@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Scrapper</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='color.css') }}" type="text/css"/>
+</head>
+<body>
+  <header class="container" style="margin-bottom: -150px">
+    <hgroup>
+      <h1 style="margin-bottom: 0px"><center>👀 Job list</center>
+      </h1>
+    <center>We want you for our company!</center>
+      <form action="/search">
+      <div style="justify-contents: center;">
+      <br>
+      </div>
+      <div style="display: flex; ">
+          <input type="search" name="keyword" style="width: 50%; margin-left: 15%; margin-right: 5%; color: #000000; background:white;" placeholder="e.g. python, golang...">
+        <button class="outline" style="width: 15%; color: #fff; background:skyblue; font-size:2em; border-radius:0.5em; padding:5px 20px;">Search
+        </button>
+      </div>
+    </form>
+    </hgroup>
+    <nav>
+      <ul>
+        <strong><a href="/" class="secondary" style="background:white;">Home</a></strong>
+      </ul>
+      <ul>
+        <p style="margin-bottom: 0px">Search Results for '{{keyword}}'</p>
+      </ul>
+    </nav>
+  </header>
+  <br>
+  <main class="container">
+    <figure>
+      <table role="grid">
+        <thead>
+          <tr>
+            <th><strong>Company</strong></th>
+            <th><strong>Position</strong></th>
+            <th><strong>Location</strong></th>
+            <th><strong>Link</strong></th>
+          </tr>
+        </thead>
+        <tstyle background-color:white;>
+        <tbody>
+          {% for job in jobs %}
+            <tr>
+              <td>{{job.company}}</td>
+              <td>{{job.title}}</td>
+              <td>{{job.location}}</td>
+              <td><a href="{{job.link}}" target="_blank">Go!</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        </tstyle>
